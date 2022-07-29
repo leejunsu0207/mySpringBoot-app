@@ -16,35 +16,33 @@ class MySpringBootAppApplicationTests {
 	AccountRepository accountRepository;
 
 	@Test
-	void optional() {
-
+	void save() {
 		Account account = new Account();
 		account.setUsername("spring");
-		account.setPassword("teset12");
-
+		account.setPassword("test12");
 		accountRepository.save(account);
-
 	}
 
 	@Test
-	public void fine(){
-
+	public void find() {
 		Optional<Account> optionalAccount = accountRepository.findByUsername("spring");
-		if(optionalAccount.isPresent()){
+		if(optionalAccount.isPresent()) {
 			Account account = optionalAccount.get();
 			System.out.println("account = " + account);
-		}else{
+		}else {
 			System.out.println("Account Not Exist");
 		}
 
-		Optional<Account> optionalAccount1 = accountRepository.findByUsername("spring");
+		Optional<Account> optionalAccount1 = accountRepository.findByUsername("spring33");
+		//Supplier인터페이스 T get()
 		Account account2 = optionalAccount1.orElseGet(() -> new Account());
 		System.out.println("account2 = " + account2);
 
-		Optional<Account> optionalAccount2 = accountRepository.findByUsername("spring");
-		Account account3 = optionalAccount1.orElseThrow(() -> new RuntimeException("Account not exist"));
+		Optional<Account> optionalAccount2 = accountRepository.findByUsername("spring44");
+		Account account3 = optionalAccount2.orElseThrow(() -> new RuntimeException("Account not exist"));
 
 
 	}
+
 
 }

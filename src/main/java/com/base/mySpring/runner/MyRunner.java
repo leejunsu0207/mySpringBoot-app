@@ -15,6 +15,8 @@ import org.slf4j.Logger;
 
 @Component
 public class MyRunner implements ApplicationRunner{
+
+	private final Logger logger = LoggerFactory.getLogger(MyRunner.class);
 	
 	@Value("${myboot.name}")
 	String name;
@@ -31,7 +33,7 @@ public class MyRunner implements ApplicationRunner{
 	
 	@Autowired
 	MyBootProperties myBootProperties;
-	private Logger logger = LoggerFactory.getLogger(MyRunner.class);
+
 	@Autowired
 	private String hello;
 
@@ -40,23 +42,15 @@ public class MyRunner implements ApplicationRunner{
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 
-		logger.debug("---------------------------");
+		System.out.println("Looger 구현객체는?? " + logger.getClass().getName());
+		logger.info(">>> Hello Bean : " + hello);
+		logger.info("Property Class " + myBootProperties.getFullName());
+		logger.info("Properties name = " + name);
+		logger.info("Properties age = " + age);
+		logger.info("Properties fullName = " + environment.getProperty("myboot.fullName"));
 
-
-		logger.info("Hello Bean : " + hello);
-
-		logger.info("Properties name : " + name);
-		logger.info("Properties age : " + age);
-//		System.out.println("Properties fullName : " + fullName);
-		logger.info("Properties fullName : " + environment.getProperty("myboot.fullName"));
-
-
-		logger.info("VM arguments : " + args.containsOption("foo"));
-		logger.info("Application arguments : " + args.containsOption("bar"));
-
-		logger.debug("Property Class name: " + myBootProperties.getName());
-		logger.debug("Property Class age: " +myBootProperties.getAge());
-		logger.debug("Property Class fullName: " +myBootProperties.getFullName());
+		logger.debug("VM arguments : " + args.containsOption("foo"));
+		logger.debug("Application arguments : " + args.containsOption("bar"));
 	}
 	
 	

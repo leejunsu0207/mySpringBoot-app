@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class MyBootProperties {
 	
 	private String name;
-	private String age;
+	private int age;
 	private String fullName;
 
 	
