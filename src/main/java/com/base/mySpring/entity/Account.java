@@ -18,3 +18,4 @@ public class Account {
     private String password;
 
 }
+
